@@ -32,6 +32,12 @@ FriendCollection = Backbone.Collection.extend({
         else
           return false;
       }));
+      friends = friends.concat(this.filter(function(friend){
+        if(friend.get('relationship_status') != null)
+          return friend.get('relationship_status').toLowerCase().indexOf(value) !== -1;
+        else
+          return false;
+      }));
     }, this);
     this.trigger('reset', new FriendCollection(friends));
   },
